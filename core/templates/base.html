@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+	<title>{% block title %}{% endblock %}</title>
+	<link rel="stylesheet" src="{% static 'css/main.css' %}" />
+</head>
+
+<body>
+	<nav class="flex nav">
+		{% block navbar %}
+		<div class="nav-brand">
+			Travel
+		</div>
+
+		<div class="nav-userbox">
+			{% if user.is_authenticated %}
+			<a href="/reservations"><button class="button-reservations">Your reservations</button></a>
+			{{ user.username }}
+			<a href="{% url 'logout' %}"><button class="button-logout">Log Out</buton></a>
+			{% else %}
+
+			<a href="{% url 'login' %}"><button class="button-login">Log In</button></a>
+			{% endif %}
+		</div>
+
+		{% endblock %}
+	</nav>
+	<main id="content">
+		{% block content %} {% endblock %}
+	</main>
+</body>
+
+</html>

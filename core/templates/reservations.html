@@ -1,0 +1,22 @@
+{% extends 'base.html' %} {% block title %} Reservations {% endblock title %} 
+{% block content %}
+<section class="trips">
+	{% for reservation in reservations %}
+	<div class="trip">
+		<div class="flex trip-header">
+			<span class="trip-name">{{ reservation.trip.name }}</span>
+			<span class="trip-date">
+				Departure: <span>{{ reservation.trip.departure_date }}</span>
+			</span>
+			<span class="trip-date">
+				Return: <span>{{ reservation.trip.return_date }}</span>
+			</span>
+		</div>
+		<div class="flex trip-content">
+			<p>{{reservation.trip.short_desc}}</p>
+		</div>
+		{{reservation.trip.photos}}
+	</div>
+	{% endfor %}
+</section>
+{% endblock %}
