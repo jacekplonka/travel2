@@ -1,36 +1,56 @@
 {% extends 'base.html' %} {% block title %} Travel {% endblock title %}
 {% block content %}
 <section id="searchbox" class="flex">
-<div class="search-container">
-	<form action="/search/" method="GET">
-		{% for field in form %}
+	<div class="search-container">
+		<form action="/search/" method="GET">
+			{% for field in form %}
 			<div id="search-{{field.name}}">
 				<label>{{field.label}}</label>
 				{{field}}
 			</div>
-		{% endfor %}
-		
-		<div class="search-submit"><input class="button" type="submit" value="Search"></div>
-	</form>
+			{% endfor %}
+
+			<div class="search-submit"><input class="button" type="submit" value="Search"></div>
+		</form>
 
 </section>
-<section class="trips">
-	{% for trip in trips %}
-	<div class="trip">
-		<div class="flex trip-header">
-			<span class="trip-name">{{ trip.name }}</span>
-			<span class="trip-date">
-				Departure: <span>{{ trip.departure_date }}</span>
-			</span>
-			<span class="trip-date">
-				Return: <span>{{ trip.return_date }}</span>
-			</span>
+<section class="trips-container">
+	<div class="sort-row">
+		<div>
+			Sort by:
+			<span>Date &#708;</span>
+			<span>Price </span>
+			<span>Availability </span>
 		</div>
-		<div class="flex trip-content">
-			<p>{{trip.short_desc}}</p>
-		</div>
-		{{trip.photos}}
+
+
 	</div>
+	{% for trip in trips %}
+	<a href="/trips/{{trip.id}}" class="flex trip">
+
+		<div class="flex trip-content">
+
+
+			<div class="trip-gallery">
+				{% load thumbnail %}
+				<img src="{% thumbnail trip.photo1 420x260 box=trip.cropping crop detail %}" />
+			</div>
+			<div class="trip-name">{{ trip.name }}</div>
+			<div class="trip-date">
+				Departure: <span>{{ trip.departure_date }}</span>
+			</div>
+			<div class="trip-date">
+				Return: <span>{{ trip.return_date }}</span>
+			</div>
+			<div class="trip-short">
+				<p>{{trip.short_desc}}</p>
+			</div>
+			<div class="trip-price">
+				{{trip.price}}€
+			</div>
+		</div>
+
+	</a>
 	{% endfor %}
 </section>
 {% endblock %}

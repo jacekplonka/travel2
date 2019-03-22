@@ -21,7 +21,8 @@
 #searchbox {
   height: 70%;
   flex-direction: column;
-  background-image: url("/static/images/background.jpg"); }
+  background-image: url("/static/images/background.jpg");
+  background-attachment: fixed; }
   #searchbox .search-container {
     background-color: rgba(0, 143, 251, 0.9);
     border-radius: 10px;
@@ -62,6 +63,52 @@
             color: rgba(0, 0, 0, 0.5); }
       #searchbox .search-container form input:focus {
         outline: none; }
+
+.trips-container {
+  width: 100%;
+  background-color: white;
+  display: flex;
+  flex-wrap: wrap; }
+  .trips-container .sort-row {
+    width: 100%;
+    display: flex;
+    padding: 10px;
+    border-bottom: solid thin; }
+    .trips-container .sort-row div {
+      display: inline-block;
+      margin: 0 10px 0 auto; }
+      .trips-container .sort-row div span {
+        border-right: solid thin;
+        padding: 0 5px; }
+      .trips-container .sort-row div span:first-child {
+        padding-right: 9px; }
+      .trips-container .sort-row div span:last-child {
+        border-right: none; }
+  .trips-container .trip {
+    width: 30%;
+    padding: 5px 5px 10px;
+    flex-wrap: wrap;
+    margin: 10px auto;
+    border: solid thin rgba(0, 0, 0, 0.1);
+    border-radius: 5px; }
+    .trips-container .trip .trip-content {
+      width: 100%;
+      flex-wrap: wrap; }
+      .trips-container .trip .trip-content .trip-name {
+        font-weight: bold;
+        font-size: 1.2rem;
+        width: 100%; }
+      .trips-container .trip .trip-content div {
+        width: 100%;
+        margin-bottom: 5px; }
+      .trips-container .trip .trip-content .trip-gallery {
+        text-align: center;
+        width: 40%; }
+        .trips-container .trip .trip-content .trip-gallery img {
+          width: 420px; }
+      .trips-container .trip .trip-content .trip-price {
+        font-size: 1.5rem;
+        color: #d72567; }
 
 * {
   box-sizing: border-box;

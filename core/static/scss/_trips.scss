@@ -1,0 +1,76 @@
+.trips-container{
+    width: 100%;
+    background-color: white;
+    display: flex;
+    flex-wrap: wrap;
+
+    
+
+    .sort-row{
+        width: 100%;
+        display: flex;
+        padding: 10px;
+        border-bottom: solid thin;
+        
+
+        div{
+            display: inline-block;
+            margin: 0 10px 0 auto;
+            span{
+                border-right: solid thin;
+                padding: 0 5px;
+            }
+            span:first-child{
+                padding-right: 9px;
+            }
+            span:last-child{
+                border-right: none;
+            }
+        }
+        
+        
+    }
+
+
+    .trip{
+        width: 30%;
+        padding: 5px 5px 10px;
+        flex-wrap: wrap;
+        margin: 10px auto;
+        border: solid thin rgba(0,0,0,0.1);
+        border-radius: 5px;
+
+        
+        .trip-content{
+            width: 100%;    
+            flex-wrap: wrap;
+            .trip-name{
+                font-weight: bold;
+                font-size: 1.2rem;
+                width: 100%;
+            }
+
+            div{
+                width: 100%;
+                margin-bottom: 5px;
+            }
+        
+            .trip-gallery{
+                text-align: center;
+                width: 40%;
+                
+                
+                img{
+                    width: 420px;
+                }
+            }
+            
+            
+
+            .trip-price{
+                font-size: 1.5rem;
+                color: #d72567;
+            }
+        }
+    }
+}

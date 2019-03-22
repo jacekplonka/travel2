@@ -2,6 +2,7 @@
     height: 70%;
     flex-direction: column;
     background-image: url("/static/images/background.jpg");
+    background-attachment: fixed;
 
     .search-container{
         background-color: transparentize($niceblue, 0.1); 

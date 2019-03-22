@@ -24,5 +24,5 @@ urlpatterns = [
     path('trips/<int:id>', views.TripView.as_view()),
     path('reservations/', views.ReservationView.as_view()),
     path('accounts/', include('django.contrib.auth.urls')),
-    path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls)
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

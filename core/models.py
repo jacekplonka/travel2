@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth import get_user_model
+from image_cropping import ImageRatioField
 import uuid
 
 # Create your models here.
@@ -28,6 +29,7 @@ class Trip(models.Model):
     country = models.ForeignKey(Country, on_delete=models.CASCADE)
     short_desc = models.TextField(max_length=512)
     long_desc = models.TextField(max_length=2048)
+    price = models.IntegerField()
     photo1 = models.ImageField(upload_to="trips", default="null")
     photo2 = models.ImageField(upload_to="trips", default="null")
     photo3 = models.ImageField(upload_to="trips", default="null")
@@ -38,6 +40,7 @@ class Trip(models.Model):
     photo8 = models.ImageField(upload_to="trips", default="null")
     photo9 = models.ImageField(upload_to="trips", default="null")
     photo10 = models.ImageField(upload_to="trips", default="null")
+    cropping = ImageRatioField('photo1', '420x260')
 
     def __str__(self):
         return self.name

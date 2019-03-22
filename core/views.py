@@ -1,6 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views import View
-from django.contrib.auth import get_user_model
 from .models import Trip, Reservation
 from .forms import SearchForm
 
@@ -10,19 +9,20 @@ from .forms import SearchForm
 
 class IndexView(View):
     def get(self, request):
-        trips = Trip.objects.all()
-        for trip in trips:
-            trip.photos = []
-            trip.photos.append(trip.photo1.url)
-            trip.photos.append(trip.photo2.url)
-            trip.photos.append(trip.photo3.url)
-            trip.photos.append(trip.photo4.url)
-            trip.photos.append(trip.photo5.url)
-            trip.photos.append(trip.photo6.url)
-            trip.photos.append(trip.photo7.url)
-            trip.photos.append(trip.photo8.url)
-            trip.photos.append(trip.photo9.url)
-            trip.photos.append(trip.photo10.url)
+        trips = Trip.objects.all().order_by('departure_date')
+
+        # for trip in trips:
+        #     trip.photos = []
+        #     trip.photos.append(trip.photo1.url)
+        #     trip.photos.append(trip.photo2.url)
+        #     trip.photos.append(trip.photo3.url)
+        #     trip.photos.append(trip.photo4.url)
+        #     trip.photos.append(trip.photo5.url)
+        #     trip.photos.append(trip.photo6.url)
+        #     trip.photos.append(trip.photo7.url)
+        #     trip.photos.append(trip.photo8.url)
+        #     trip.photos.append(trip.photo9.url)
+        #     trip.photos.append(trip.photo10.url)
         form = SearchForm()
         return render(request, "index.html", {'trips': trips, 'form': form})
 
