@@ -1,5 +1,19 @@
-{% extends 'base.html' %} {% block title %} Travel {% endblock title %} 
+{% extends 'base.html' %} {% block title %} Travel {% endblock title %}
 {% block content %}
+<section id="searchbox" class="flex">
+<div class="search-container">
+	<form action="/search/" method="GET">
+		{% for field in form %}
+			<div id="search-{{field.name}}">
+				<label>{{field.label}}</label>
+				{{field}}
+			</div>
+		{% endfor %}
+		
+		<div class="search-submit"><input class="button" type="submit" value="Search"></div>
+	</form>
+
+</section>
 <section class="trips">
 	{% for trip in trips %}
 	<div class="trip">

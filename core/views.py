@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.views import View
 from django.contrib.auth import get_user_model
 from .models import Trip, Reservation
+from .forms import SearchForm
 
 
 # Create your views here.
@@ -22,7 +23,8 @@ class IndexView(View):
             trip.photos.append(trip.photo8.url)
             trip.photos.append(trip.photo9.url)
             trip.photos.append(trip.photo10.url)
-        return render(request, "index.html", {'trips': trips})
+        form = SearchForm()
+        return render(request, "index.html", {'trips': trips, 'form': form})
 
 
 class TripView(View):
