@@ -1,28 +1,57 @@
 {% extends 'base.html' %}
 {% block title %}
-    {{trip.name}}
+{{trip.name}}
 {% endblock title %}
 {% block content %}
-<section class="trips">
-	
-	<div class="flex trip-content">
-			<div class="trip-gallery">
-				{% load thumbnail %}
-				<img src="{% thumbnail trip.photo1 420x260 box=trip.cropping crop detail %}" />
-			</div>
-			<div class="trip-name">{{ trip.name }}</div>
-			<div class="trip-date">
-				Departure: <span>{{ trip.departure_date }}</span>
-			</div>
-			<div class="trip-date">
-				Return: <span>{{ trip.return_date }}</span>
-			</div>
-			<div class="trip-short">
-				<p>{{trip.short_desc}}</p>
-			</div>
-			<div class="trip-price">
-				{{trip.price}}€
-			</div>
+<section class="flex trip-view">
+
+
+	<div class="trip-gallery">
+		<div>&lt;</div>
+		<div>&gt;</div>
+		<img id="gallery" src="" />
+
+	</div>
+
+	<div class="trip-content">
+		<p class="trip-name">{{trip.name}}</p>
+		<div class="flex trip-dates">
+			<p>Departure: <span>{{ trip.departure_date }}</span></p>
+			<p>Return: <span>{{ trip.return_date }}</span></p>
 		</div>
+
+		<p class="trip-desc">{{trip.long_desc}}</p>
+
+
+		<p class="trip-price">{{trip.price}}€</p>
+	</div>
+
+
+
+
 </section>
+
+<script>
+	let urls = [{% for photo in trip.photos %}"{{photo}}", {% endfor %}];
+	urls = urls.filter((url) => {
+		if (url !== "/media/null") return true;
+	})
+	const gallery = document.getElementById('gallery');
+	let i = 0;
+	gallery.src = urls[0];
+	gallery.previousElementSibling.addEventListener('click', () => {
+		gallery.src = urls[++i];
+		if (i === urls.length - 1) {
+			i = -1;
+		}
+	});
+	gallery.previousElementSibling.previousElementSibling.addEventListener('click', () => {
+		gallery.src = urls[--i];
+		if (i === 0) {
+			i = urls.length;
+		}
+	});
+
+
+</script>
 {% endblock content %}

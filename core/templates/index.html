@@ -33,7 +33,7 @@
 
 			<div class="trip-gallery">
 				{% load thumbnail %}
-				<img src="{% thumbnail trip.photo1 420x260 box=trip.cropping crop detail %}" />
+				<img src="{% thumbnail trip.photo1 420x260 crop %}" />
 			</div>
 			<div class="trip-name">{{ trip.name }}</div>
 			<div class="trip-date">

@@ -100,15 +100,43 @@
         width: 100%; }
       .trips-container .trip .trip-content div {
         width: 100%;
+        text-align: justify;
         margin-bottom: 5px; }
       .trips-container .trip .trip-content .trip-gallery {
-        text-align: center;
         width: 40%; }
         .trips-container .trip .trip-content .trip-gallery img {
           width: 420px; }
-      .trips-container .trip .trip-content .trip-price {
-        font-size: 1.5rem;
-        color: #d72567; }
+
+.trip-price {
+  font-size: 1.5rem;
+  color: #d72567; }
+
+.trip-view {
+  margin-top: 5px;
+  padding: 5px; }
+  .trip-view .trip-gallery {
+    margin: 0 auto;
+    width: 650px; }
+    .trip-view .trip-gallery img {
+      width: 650px;
+      height: 390px; }
+    .trip-view .trip-gallery div {
+      font-size: 4rem;
+      color: white;
+      position: absolute;
+      transform: translate(0, 158px); }
+    .trip-view .trip-gallery div:nth-child(2) {
+      transform: translate(610px, 158px); }
+  .trip-view .trip-dates p:first-child {
+    font-weight: 100;
+    margin-right: 10px; }
+  .trip-view .trip-content {
+    padding-left: 10px; }
+  .trip-view .trip-name {
+    font-size: 2rem; }
+  .trip-view .trip-desc {
+    margin: 10px 10px 10px 0;
+    text-align: justify; }
 
 * {
   box-sizing: border-box;

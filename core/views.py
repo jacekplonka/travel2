@@ -30,6 +30,18 @@ class IndexView(View):
 class TripView(View):
     def get(self, request, id):
         trip = get_object_or_404(Trip, id=id)
+
+        trip.photos = []
+        trip.photos.append(trip.photo1.url)
+        trip.photos.append(trip.photo2.url)
+        trip.photos.append(trip.photo3.url)
+        trip.photos.append(trip.photo4.url)
+        trip.photos.append(trip.photo5.url)
+        trip.photos.append(trip.photo6.url)
+        trip.photos.append(trip.photo7.url)
+        trip.photos.append(trip.photo8.url)
+        trip.photos.append(trip.photo9.url)
+        trip.photos.append(trip.photo10.url)
         return render(request, "trip.html", {'trip': trip})
 
 

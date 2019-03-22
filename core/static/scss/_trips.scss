@@ -4,15 +4,12 @@
     display: flex;
     flex-wrap: wrap;
 
-    
-
     .sort-row{
         width: 100%;
         display: flex;
         padding: 10px;
         border-bottom: solid thin;
         
-
         div{
             display: inline-block;
             margin: 0 10px 0 auto;
@@ -26,11 +23,8 @@
             span:last-child{
                 border-right: none;
             }
-        }
-        
-        
+        }  
     }
-
 
     .trip{
         width: 30%;
@@ -39,8 +33,7 @@
         margin: 10px auto;
         border: solid thin rgba(0,0,0,0.1);
         border-radius: 5px;
-
-        
+  
         .trip-content{
             width: 100%;    
             flex-wrap: wrap;
@@ -52,25 +45,69 @@
 
             div{
                 width: 100%;
+                text-align: justify;
                 margin-bottom: 5px;
             }
         
             .trip-gallery{
-                text-align: center;
                 width: 40%;
-                
-                
                 img{
                     width: 420px;
                 }
-            }
-            
-            
 
-            .trip-price{
-                font-size: 1.5rem;
-                color: #d72567;
             }
+
+            
         }
+    }
+}
+
+.trip-price{
+    font-size: 1.5rem;
+    color: #d72567;
+}
+
+.trip-view{
+    margin-top: 5px;
+    padding: 5px;
+    .trip-gallery{
+        margin: 0 auto;
+        width: 650px;
+        img{
+            width: 650px;
+            height: 390px;
+        }
+
+        div{
+            font-size: 4rem;
+            color: white;
+            position: absolute;
+            transform: translate(0,158px);
+
+        }
+
+        div:nth-child(2){
+            transform: translate(610px, 158px);
+        }
+    }
+
+    .trip-dates { 
+        
+        p:first-child{
+            font-weight: 100;
+            margin-right: 10px;
+        }
+    }
+    .trip-content{
+        padding-left: 10px;
+    }
+
+    .trip-name{
+        font-size: 2rem;
+    }
+
+    .trip-desc{
+        margin: 10px 10px 10px 0;
+        text-align: justify;
     }
 }
