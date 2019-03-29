@@ -64,8 +64,20 @@
 
 .trip-price{
     font-size: 1.5rem;
-    color: #d72567;
+    color: $accentcolor;
 }
+
+.trip-book{
+    text-align: center;
+    margin-top: 20px;
+    .trip-book-button{
+
+        background-color: $accentcolor;
+        color: white;
+    }
+}
+
+
 
 .trip-view{
     margin-top: 5px;
@@ -109,5 +121,66 @@
     .trip-desc{
         margin: 10px 10px 10px 0;
         text-align: justify;
+    }
+
+    
+}
+
+
+.reservation{
+    flex-wrap: wrap;
+    h1{
+        text-align: center;
+        font-size: 2.4rem;
+        width: 100%;
+        margin-bottom: 30px;
+    }
+
+    .trip{
+        display: flex;
+        .trip-content{
+            margin-left: 5px;
+            padding-top: 10px;
+        }
+        .trip-dates { 
+        
+            p:first-child{
+                font-weight: 100;
+                margin-right: 10px;
+            }
+        }
+        .trip-content{
+            padding-left: 10px;
+        }
+    
+        .trip-name{
+            font-size: 2rem;
+        }
+    
+        .trip-desc{
+            margin: 10px 10px 10px 0;
+            text-align: justify;
+        }
+    }
+
+    form{
+        display: flex;
+        flex-direction: column;
+        label{
+            margin-right: 10px;
+            font-size: 1.5rem;
+        }
+        input[type="number"]{
+            font-size: 1.5rem;
+            width: 50px;
+        }
+        div{
+            margin-bottom: 10px;
+            
+        }
+        input[type="submit"]{
+            width: 80%;
+            margin: 0 auto;
+        }
     }
 }

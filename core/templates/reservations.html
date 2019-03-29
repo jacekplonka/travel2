@@ -1,22 +1,33 @@
 {% extends 'base.html' %} {% block title %} Reservations {% endblock title %} 
 {% block content %}
-<section class="trips">
+<section class="flex reservation">
 	{% for reservation in reservations %}
-	<div class="trip">
-		<div class="flex trip-header">
-			<span class="trip-name">{{ reservation.trip.name }}</span>
-			<span class="trip-date">
-				Departure: <span>{{ reservation.trip.departure_date }}</span>
-			</span>
-			<span class="trip-date">
-				Return: <span>{{ reservation.trip.return_date }}</span>
-			</span>
+	<a class="trip" href=/trips/{{reservation.trip.id}}>
+		<div class="trip-gallery">
+					{% load thumbnail %}
+					<img src="{% thumbnail reservation.trip.photo1 420x260 crop %}" />
 		</div>
-		<div class="flex trip-content">
-			<p>{{reservation.trip.short_desc}}</p>
+	
+	<div class="trip-content">
+		<p class="trip-name">{{reservation.trip.name}}</p>
+		<div class="flex trip-dates">
+			<p>Departure: <span>{{ reservation.trip.departure_date }}</span></p>
+			<p>Return: <span>{{ reservation.trip.return_date }}</span></p>
 		</div>
-		{{reservation.trip.photos}}
+		<div>
+		Rooms: {{reservation.rooms}}
+		</div>
+		<div>
+			Booked at {{reservation.time}}
+		</div>
+
+		<p class="trip-desc">{{reservation.trip.long_desc}}</p>
+
+
+		<p class="trip-price">{{reservation.trip.price}}€</p>
+		
 	</div>
+	</a>
 	{% endfor %}
 </section>
 {% endblock %}

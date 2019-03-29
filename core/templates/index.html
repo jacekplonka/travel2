@@ -17,16 +17,18 @@
 <section class="trips-container">
 	<div class="sort-row">
 		<div>
-			Sort by:
-			<span>Date &#708;</span>
-			<span>Price </span>
-			<span>Availability </span>
+			Order by:
+			{% if order == 'departure_date' %}<a href="/-departure_date"><span>Date &#709;</span></a>{% else %}<a href="/departure_date"><span>Date &#708;</span></a>{% endif %}
+			{% if order == 'price' %}<a href="/-price"><span>Price &#708;</span></a>{% else %}<a href="/price"><span>Price &#709;</span></a>{% endif %}
+			{% if order == 'free_rooms' %}<a href="/-free_rooms"><span>Availability &#708;</span></a>{% else %}<a href="/free_rooms"><span>Availability &#709;</span></a>{% endif %}
+			
 		</div>
 
 
 	</div>
 	{% for trip in trips %}
-	<a href="/trips/{{trip.id}}" class="flex trip">
+	{% if trip.free_rooms > 0 %}
+		<a href="/trips/{{trip.id}}" class="flex trip">
 
 		<div class="flex trip-content">
 
@@ -42,15 +44,28 @@
 			<div class="trip-date">
 				Return: <span>{{ trip.return_date }}</span>
 			</div>
+			{% if trip.free_rooms > 4 %}
+				<div class="trip-rooms">
+					{{trip.free_rooms}} rooms left
+				</div>
+			{% else %}
+				<div class="trip-rooms danger">
+					Only {{trip.free_rooms}} room{% if trip.free_rooms > 1 %}s{% endif %}  left!
+				</div>
+			{% endif %}
+			
 			<div class="trip-short">
 				<p>{{trip.short_desc}}</p>
 			</div>
+			
 			<div class="trip-price">
 				{{trip.price}}€
 			</div>
 		</div>
 
 	</a>
+	{% endif %}
+	
 	{% endfor %}
 </section>
 {% endblock %}

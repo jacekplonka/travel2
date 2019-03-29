@@ -1,15 +1,18 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views import View
+from django.contrib.auth import get_user_model
 from .models import Trip, Reservation
-from .forms import SearchForm
+from .forms import SearchForm, ReservationForm
+import datetime
+import random
 
 
 # Create your views here.
 
 
 class IndexView(View):
-    def get(self, request):
-        trips = Trip.objects.all().order_by('departure_date')
+    def get(self, request, order='departure_date'):
+        trips = Trip.objects.all().order_by(order)
 
         # for trip in trips:
         #     trip.photos = []
@@ -24,7 +27,7 @@ class IndexView(View):
         #     trip.photos.append(trip.photo9.url)
         #     trip.photos.append(trip.photo10.url)
         form = SearchForm()
-        return render(request, "index.html", {'trips': trips, 'form': form})
+        return render(request, "index.html", {'trips': trips, 'form': form, 'order': order})
 
 
 class TripView(View):
@@ -48,7 +51,43 @@ class TripView(View):
 class ReservationView(View):
     def get(self, request):
         if request.user.is_authenticated:
-            reservations = Reservation.objects.all().filter(user=request.user.id)
+            reservations = Reservation.objects.all().filter(user=request.user)
 
             return render(request, 'reservations.html', {'reservations': reservations})
         return redirect('/accounts/login/')
+
+
+class NewReservationView(View):
+    def get(self, request, id):
+        form = ReservationForm()
+        trip = get_object_or_404(Trip, id=id)
+        return render(request, 'newReservation.html', {'trip': trip, 'form': form})
+
+    def post(self, request, id):
+        trip = get_object_or_404(Trip, id=id)
+
+        form = ReservationForm(request.POST)
+
+        if form.is_valid() and trip.free_rooms >= form.cleaned_data['rooms'] and form.cleaned_data['rooms'] > 0:
+            reservation = Reservation()
+            reservation.user = request.user
+            reservation.trip = trip
+            reservation.rooms = form.cleaned_data['rooms']
+            reservation.time = datetime.datetime.now()
+            reservation.save()
+            trip.free_rooms -= form.cleaned_data['rooms']
+            trip.save()
+            return redirect('/reservations/')
+        else:
+            form = ReservationForm()
+            trip = get_object_or_404(Trip, id=id)
+            return render(request, 'newReservation.html', {'trip': trip, 'form': form, 'error': 'Not enough free rooms'})
+
+
+# class Script(View):
+#     def get(self, request):
+#         trips = Trip.objects.all()
+#         for trip in trips:
+#             trip.free_rooms = random.randrange(1,12)
+#             trip.save()
+

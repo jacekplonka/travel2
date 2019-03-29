@@ -21,8 +21,11 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('', views.IndexView.as_view()),
+    path('<order>', views.IndexView.as_view()),
     path('trips/<int:id>', views.TripView.as_view()),
+    path('reservations/new/<int:id>', views.NewReservationView.as_view()),
     path('reservations/', views.ReservationView.as_view()),
     path('accounts/', include('django.contrib.auth.urls')),
+    # path('script/', views.Script.as_view()),
     path('admin/', admin.site.urls)
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

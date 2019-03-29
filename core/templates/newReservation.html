@@ -3,15 +3,10 @@
 {{trip.name}}
 {% endblock title %}
 {% block content %}
-<section class="flex trip-view">
-
-
-	<div class="trip-gallery">
-		<div>&lt;</div>
-		<div>&gt;</div>
-		<img id="gallery" src="" />
-
-	</div>
+<section class="flex trip-view reservation">
+    <h1 class="">Confirm your reservation</h1>
+    
+	
 
 	<div class="trip-content">
 		<p class="trip-name">{{trip.name}}</p>
@@ -19,24 +14,23 @@
 			<p>Departure: <span>{{ trip.departure_date }}</span></p>
 			<p>Return: <span>{{ trip.return_date }}</span></p>
 		</div>
-		{% if trip.free_rooms > 4 %}
-		<div class="trip-rooms">
-			{{trip.free_rooms}} rooms left
-		</div>
-		{% else %}
-		<div class="trip-rooms danger">
-			Only {{trip.free_rooms}} rooms left!
-		</div>
-		{% endif %}
+		
 
 		<p class="trip-desc">{{trip.long_desc}}</p>
 
 
 		<p class="trip-price">{{trip.price}}€</p>
 		<div class="trip-book">
-			<a href="/reservations/new/{{trip.id}}">
-				<button class="trip-book-button">Book</button>
-			</a>
+        <h4 class="danger">{{error}}</h4>
+        <form action="/reservations/new/{{trip.id}}" method="POST">
+        {% csrf_token %}
+        <div>
+            {{form}}
+        </div>
+            
+            <input type="submit" class="button trip-book-button" value="Confirm">
+        </form>
+			
 		</div>
 	</div>
 

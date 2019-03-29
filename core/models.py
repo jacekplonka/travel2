@@ -30,6 +30,7 @@ class Trip(models.Model):
     short_desc = models.TextField(max_length=512)
     long_desc = models.TextField(max_length=2048)
     price = models.IntegerField()
+    free_rooms = models.IntegerField()
     photo1 = models.ImageField(upload_to="trips", default="null")
     photo2 = models.ImageField(upload_to="trips", default="null")
     photo3 = models.ImageField(upload_to="trips", default="null")
@@ -45,12 +46,20 @@ class Trip(models.Model):
     def __str__(self):
         return self.name
 
+    class Meta:
+        ordering = ('departure_date',)
+
 
 class Reservation(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4(), editable=False)
     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
     trip = models.ForeignKey(Trip, on_delete=models.CASCADE)
+    time = models.DateTimeField(auto_created=True)
+    rooms = models.IntegerField()
+
+    class Meta:
+        ordering = ('-time',)
 
     def __str__(self):
-        return str(self.id)
+        return str(self.user.username) + " " + str(self.trip.name) + " id{" + str(self.id) + "}"
 

@@ -11,6 +11,8 @@
     font-size: 2.8rem;
     color: #008ffb;
     padding-left: 10px; }
+  .nav .nav-phone {
+    padding-right: 15px; }
   .nav .nav-userbox {
     margin: auto 5px auto auto;
     color: #008ffb; }
@@ -111,6 +113,13 @@
   font-size: 1.5rem;
   color: #d72567; }
 
+.trip-book {
+  text-align: center;
+  margin-top: 20px; }
+  .trip-book .trip-book-button {
+    background-color: #d72567;
+    color: white; }
+
 .trip-view {
   margin-top: 5px;
   padding: 5px; }
@@ -137,6 +146,43 @@
   .trip-view .trip-desc {
     margin: 10px 10px 10px 0;
     text-align: justify; }
+
+.reservation {
+  flex-wrap: wrap; }
+  .reservation h1 {
+    text-align: center;
+    font-size: 2.4rem;
+    width: 100%;
+    margin-bottom: 30px; }
+  .reservation .trip {
+    display: flex; }
+    .reservation .trip .trip-content {
+      margin-left: 5px;
+      padding-top: 10px; }
+    .reservation .trip .trip-dates p:first-child {
+      font-weight: 100;
+      margin-right: 10px; }
+    .reservation .trip .trip-content {
+      padding-left: 10px; }
+    .reservation .trip .trip-name {
+      font-size: 2rem; }
+    .reservation .trip .trip-desc {
+      margin: 10px 10px 10px 0;
+      text-align: justify; }
+  .reservation form {
+    display: flex;
+    flex-direction: column; }
+    .reservation form label {
+      margin-right: 10px;
+      font-size: 1.5rem; }
+    .reservation form input[type="number"] {
+      font-size: 1.5rem;
+      width: 50px; }
+    .reservation form div {
+      margin-bottom: 10px; }
+    .reservation form input[type="submit"] {
+      width: 80%;
+      margin: 0 auto; }
 
 * {
   box-sizing: border-box;
@@ -173,3 +219,7 @@ a {
 
 .flex {
   display: flex; }
+
+.danger {
+  color: red;
+  font-weight: bold; }

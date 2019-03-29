@@ -1,4 +1,5 @@
 $niceblue: rgb(0, 143, 251);
+$accentcolor: #d72567;
 
 
 @import '_header.scss';
@@ -56,4 +57,9 @@ a{
 
 .flex{
     display: flex;
+}
+
+.danger{
+    color: red;
+    font-weight: bold;
 }
