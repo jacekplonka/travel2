@@ -151,7 +151,7 @@
 .reservation {
   flex-wrap: wrap;
   background: white;
-  height: 100%;
+  min-height: 100%;
   align-content: flex-start; }
   .reservation h1 {
     text-align: center;
