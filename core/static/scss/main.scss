@@ -5,6 +5,7 @@ $accentcolor: #d72567;
 @import '_header.scss';
 @import '_searchBox.scss';
 @import '_trips.scss';
+@import '_login.scss';
 @import url("https://fonts.googleapis.com/css?family=Lato|Courgette");
 
 
@@ -22,6 +23,9 @@ html{
 body{
     font-family: 'Lato', sans-serif;
     height: 100%;
+    background: url('/static/images/background.jpg');
+    background-attachment: fixed;
+
 }
 
 #content{

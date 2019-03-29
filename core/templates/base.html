@@ -8,6 +8,11 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
 	<title>{% block title %}{% endblock %}</title>
 	<link rel="stylesheet" href="{% static 'css/main.css' %}" />
+	<link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+
+
 </head>
 
 <body>
@@ -22,12 +27,13 @@
 
 			{% if user.is_authenticated %}
 			<span>{{ user.username }}</span>
-			<a href="/reservations"><button class="button-reservations">Your reservations</button></a>
+			<a href="/reservations/"><button class="button-reservations">Your reservations</button></a>
 			
 			<a href="{% url 'logout' %}"><button class="button-logout">Log Out</button></a>
 			{% else %}
 
 			<a href="{% url 'login' %}"><button class="button-login">Log In</button></a>
+			<a href="/accounts/signup/"><button class="button-login">Sign Up</button></a>
 			{% endif %}
 		</div>
 

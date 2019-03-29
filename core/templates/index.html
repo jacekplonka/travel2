@@ -2,7 +2,7 @@
 {% block content %}
 <section id="searchbox" class="flex">
 	<div class="search-container">
-		<form action="/search/" method="GET">
+		<form action="/{{order}}/" method="GET">
 			{% for field in form %}
 			<div id="search-{{field.name}}">
 				<label>{{field.label}}</label>
@@ -12,23 +12,81 @@
 
 			<div class="search-submit"><input class="button" type="submit" value="Search"></div>
 		</form>
+		<script>
+			document.addEventListener('DOMContentLoaded', () => {
+				const destinations = ['Country', 'Hotel', 'Trip name'];
+				const destination = document.getElementById('id_destination');
+				let letter = 0;
+				let word = 0;
+				let order = 1;
+				let stopped = false;
+				setInterval(() => {
+					if (!stopped) {
+						if (order == -1) {
+							destination.placeholder = destination.placeholder.slice(0, letter);
+							letter--;
+						}
+						else {
+							destination.placeholder += destinations[word][letter];
+
+						}
+						letter += order;
+						if (letter >= destinations[word].length) {
+							stopped = true;
+							setTimeout(() => {
+								order = -1;
+								stopped = false;
+							}, 1000);
+
+						}
+						if (order == -1 && letter < -1) {
+							order = 1;
+							letter = 0;
+							word++;
+						}
+						if (word >= destinations.length) {
+							word = 0;
+						}
+					}
+
+				}, 100);
+
+			});
+
+		</script>
 
 </section>
 <section class="trips-container">
 	<div class="sort-row">
 		<div>
 			Order by:
-			{% if order == 'departure_date' %}<a href="/-departure_date"><span>Date &#709;</span></a>{% else %}<a href="/departure_date"><span>Date &#708;</span></a>{% endif %}
-			{% if order == 'price' %}<a href="/-price"><span>Price &#708;</span></a>{% else %}<a href="/price"><span>Price &#709;</span></a>{% endif %}
-			{% if order == 'free_rooms' %}<a href="/-free_rooms"><span>Availability &#708;</span></a>{% else %}<a href="/free_rooms"><span>Availability &#709;</span></a>{% endif %}
-			
+			{% if order == 'departure_date' %}<a
+				href="/-departure_date/?destination={{query.destination}}&date={{query.date}}"><span>Date
+					&#708;</span></a>{% else %}<a
+				href="/departure_date/?destination={{query.destination}}&date={{query.date}}"><span>Date
+					&#709;</span></a>{% endif %}
+			{% if order == 'price' %}<a
+				href="/-price/?destination={{query.destination}}&date={{query.date}}"><span>Price
+					&#708;</span></a>{% else %}<a
+				href="/price/?destination={{query.destination}}&date={{query.date}}"><span>Price
+					&#709;</span></a>{% endif %}
+			{% if order == 'free_rooms' %}<a
+				href="/-free_rooms/?destination={{query.destination}}&date={{query.date}}"><span>Availability
+					&#708;</span></a>{% else %}<a
+				href="/free_rooms/?destination={{query.destination}}&date={{query.date}}"><span>Availability
+					&#709;</span></a>{% endif %}
+
 		</div>
 
 
 	</div>
+	{% if not trips %}
+	<p style="margin: 0 auto; font-size: 1.4rem;">Sorry, there is no trips matching your query. Please, search again.
+	</p>
+	{% endif %}
 	{% for trip in trips %}
 	{% if trip.free_rooms > 0 %}
-		<a href="/trips/{{trip.id}}" class="flex trip">
+	<a href="/trips/{{trip.id}}" class="flex trip">
 
 		<div class="flex trip-content">
 
@@ -38,26 +96,28 @@
 				<img src="{% thumbnail trip.photo1 420x260 crop %}" />
 			</div>
 			<div class="trip-name">{{ trip.name }}</div>
+			<div class="trip-country">{{trip.country}}</div>
+			<div class="trip-hotel"><i style="margin-right: 2px;" class="fas fa-hotel"></i> {{trip.hotel}}</div>
 			<div class="trip-date">
-				Departure: <span>{{ trip.departure_date }}</span>
+				<i class="fas fa-plane-departure"></i> <span>{{ trip.departure_date }}</span>
 			</div>
 			<div class="trip-date">
-				Return: <span>{{ trip.return_date }}</span>
+				<i class="fas fa-plane-arrival"></i> <span>{{ trip.return_date }}</span>
 			</div>
 			{% if trip.free_rooms > 4 %}
-				<div class="trip-rooms">
-					{{trip.free_rooms}} rooms left
-				</div>
+			<div class="trip-rooms">
+				{{trip.free_rooms}} rooms left
+			</div>
 			{% else %}
-				<div class="trip-rooms danger">
-					Only {{trip.free_rooms}} room{% if trip.free_rooms > 1 %}s{% endif %}  left!
-				</div>
+			<div class="trip-rooms danger">
+				Only {{trip.free_rooms}} room{% if trip.free_rooms > 1 %}s{% endif %} left!
+			</div>
 			{% endif %}
-			
+
 			<div class="trip-short">
 				<p>{{trip.short_desc}}</p>
 			</div>
-			
+
 			<div class="trip-price">
 				{{trip.price}}€
 			</div>
@@ -65,7 +125,7 @@
 
 	</a>
 	{% endif %}
-	
+
 	{% endfor %}
 </section>
 {% endblock %}

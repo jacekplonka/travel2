@@ -1,0 +1,34 @@
+.login-form{
+    text-align: center;
+    width: 400px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 5px;
+    margin-top: 5%;
+
+    h2{
+        color: $niceblue;
+        padding-top: 5px;
+        font-size: 2rem;
+        margin-bottom: 10px;
+    }
+
+    input{
+        margin: 10px 0;
+        font-size: 1.4rem;
+        text-align: center;
+    }
+
+
+    label{
+        
+        font-size: 1.4rem;
+    }
+
+    button{
+        color: white;
+        background: $niceblue;
+        margin-bottom: 10px;
+    }
+}
+

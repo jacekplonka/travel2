@@ -3,6 +3,8 @@
     background-color: white;
     display: flex;
     flex-wrap: wrap;
+    align-content: flex-start;
+    min-height: 100%;
 
     .sort-row{
         width: 100%;
@@ -80,7 +82,9 @@
 
 
 .trip-view{
-    margin-top: 5px;
+    height: 100%;
+    background: white;
+    // margin-top: 5px;
     padding: 5px;
     .trip-gallery{
         margin: 0 auto;
@@ -129,6 +133,10 @@
 
 .reservation{
     flex-wrap: wrap;
+    background: white;
+    height: 100%;
+    align-content: flex-start;
+    // padding-bottom: 10px;
     h1{
         text-align: center;
         font-size: 2.4rem;
@@ -138,6 +146,7 @@
 
     .trip{
         display: flex;
+        // margin-bottom: 10px;
         .trip-content{
             margin-left: 5px;
             padding-top: 10px;

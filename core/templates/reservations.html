@@ -1,6 +1,7 @@
 {% extends 'base.html' %} {% block title %} Reservations {% endblock title %} 
 {% block content %}
 <section class="flex reservation">
+	{% if reservations %}
 	{% for reservation in reservations %}
 	<a class="trip" href=/trips/{{reservation.trip.id}}>
 		<div class="trip-gallery">
@@ -10,6 +11,7 @@
 	
 	<div class="trip-content">
 		<p class="trip-name">{{reservation.trip.name}}</p>
+		<p>{{reservation.trip.country}}</p>
 		<div class="flex trip-dates">
 			<p>Departure: <span>{{ reservation.trip.departure_date }}</span></p>
 			<p>Return: <span>{{ reservation.trip.return_date }}</span></p>
@@ -29,5 +31,8 @@
 	</div>
 	</a>
 	{% endfor %}
+	{% else %}
+	<p style="margin: 0 auto; font-size: 1.4rem;">You have no active reservations.</p>
+	{% endif %}
 </section>
 {% endblock %}
