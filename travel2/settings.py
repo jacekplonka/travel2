@@ -25,7 +25,7 @@ SECRET_KEY = '(lg6y%5fbqxg1lx$ed4^#jl=(p!vr8@_yn4k05b#g$%&+0*4j!'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['jplonka.pl']
 
 
 # Application definition
