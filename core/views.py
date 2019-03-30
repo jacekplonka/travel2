@@ -105,6 +105,7 @@ class NewReservationView(View):
             reservation.rooms = form.cleaned_data['rooms']
             reservation.time = datetime.datetime.now()
             reservation.save()
+            del reservation
             trip.free_rooms -= form.cleaned_data['rooms']
             trip.save()
             return redirect('/reservations/')

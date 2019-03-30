@@ -51,15 +51,14 @@ class Trip(models.Model):
 
 
 class Reservation(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4(), editable=False)
     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
     trip = models.ForeignKey(Trip, on_delete=models.CASCADE)
-    time = models.DateTimeField(auto_created=True)
+    time = models.DateTimeField(auto_now_add=True)
     rooms = models.IntegerField()
 
     class Meta:
         ordering = ('-time',)
 
     def __str__(self):
-        return str(self.user.username) + " " + str(self.trip.name) + " id{" + str(self.id) + "}"
+        return str(self.id) + ". " + str(self.user.username) + " " + str(self.trip.name)
 
