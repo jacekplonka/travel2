@@ -99,10 +99,10 @@
 			<div class="trip-country">{{trip.country}}</div>
 			<div class="trip-hotel"><i style="margin-right: 2px;" class="fas fa-hotel"></i> {{trip.hotel}}</div>
 			<div class="trip-date">
-				<i class="fas fa-plane-departure"></i> <span>{{ trip.departure_date }}</span>
+				<i class="fas fa-plane-departure"></i> <span>{{ trip.departure_date|date:'Y-m-d' }}</span>
 			</div>
 			<div class="trip-date">
-				<i class="fas fa-plane-arrival"></i> <span>{{ trip.return_date }}</span>
+				<i class="fas fa-plane-arrival"></i> <span>{{ trip.return_date|date:'Y-m-d' }}</span>
 			</div>
 			{% if trip.free_rooms > 4 %}
 			<div class="trip-rooms">

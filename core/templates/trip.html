@@ -17,8 +17,8 @@
 		<p class="trip-name">{{trip.name}}</p>
 		<p>{{trip.country}}</p>
 		<div class="flex trip-dates">
-			<p>Departure: <span>{{ trip.departure_date }}</span></p>
-			<p>Return: <span>{{ trip.return_date }}</span></p>
+			<p>Departure: <span>{{ trip.departure_date|date:'Y-m-d' }}</span></p>
+			<p>Return: <span>{{ trip.return_date|date:'Y-m-d' }}</span></p>
 		</div>
 		{% if trip.free_rooms > 4 %}
 		<div class="trip-rooms">

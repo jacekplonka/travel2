@@ -13,8 +13,8 @@
 		<p class="trip-name">{{reservation.trip.name}}</p>
 		<p>{{reservation.trip.country}}</p>
 		<div class="flex trip-dates">
-			<p>Departure: <span>{{ reservation.trip.departure_date }}</span></p>
-			<p>Return: <span>{{ reservation.trip.return_date }}</span></p>
+			<p>Departure: <span>{{ reservation.trip.departure_date|date:'Y-m-d' }}</span></p>
+			<p>Return: <span>{{ reservation.trip.return_date|date:'Y-m-d' }}</span></p>
 		</div>
 		<div>
 		Rooms: {{reservation.rooms}}
