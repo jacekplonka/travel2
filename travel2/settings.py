@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     'core',
     'easy_thumbnails',
     'image_cropping',
-    'jet_django',
 ]
 
 MIDDLEWARE = [

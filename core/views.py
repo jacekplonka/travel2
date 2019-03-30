@@ -25,6 +25,7 @@ def signup(request):
         form = UserCreationForm()
     return render(request, 'registration/signup.html', {'form': form})
 
+
 class IndexView(View):
     def get(self, request, order='departure_date'):
         query = {}
@@ -111,12 +112,3 @@ class NewReservationView(View):
             form = ReservationForm()
             trip = get_object_or_404(Trip, id=id)
             return render(request, 'newReservation.html', {'trip': trip, 'form': form, 'error': 'Not enough free rooms'})
-
-
-# class Script(View):
-#     def get(self, request):
-#         trips = Trip.objects.all()
-#         for trip in trips:
-#             trip.free_rooms = random.randrange(1,12)
-#             trip.save()
-
