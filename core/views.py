@@ -89,6 +89,8 @@ class ReservationView(View):
 
 class NewReservationView(View):
     def get(self, request, id):
+        if not request.user.is_authenticated:
+            return redirect('/accounts/login')
         form = ReservationForm()
         trip = get_object_or_404(Trip, id=id)
         return render(request, 'newReservation.html', {'trip': trip, 'form': form})
@@ -97,7 +99,8 @@ class NewReservationView(View):
         trip = get_object_or_404(Trip, id=id)
 
         form = ReservationForm(request.POST)
-
+        if not request.user.is_authenticated:
+            return redirect('/accounts/login')
         if form.is_valid() and trip.free_rooms >= form.cleaned_data['rooms'] and form.cleaned_data['rooms'] > 0:
             reservation = Reservation()
             reservation.user = request.user
