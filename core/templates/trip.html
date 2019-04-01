@@ -24,6 +24,10 @@
 		<div class="trip-rooms">
 			{{trip.free_rooms}} rooms left
 		</div>
+		{% elif trip.free_rooms == 0 %}
+		<div class="trip-rooms danger">
+			Sold out!
+		</div>
 		{% else %}
 		<div class="trip-rooms danger">
 			Only {{trip.free_rooms}} rooms left!
@@ -34,11 +38,13 @@
 
 
 		<p class="trip-price">{{trip.price}}€</p>
+		{% if trip.free_rooms > 0 %}
 		<div class="trip-book">
 			<a href="/reservations/new/{{trip.id}}">
 				<button class="trip-book-button">Book</button>
 			</a>
 		</div>
+		{% endif %}
 	</div>
 
 
