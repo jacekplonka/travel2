@@ -1,6 +1,9 @@
 # travel2
 
-A project of a travel agency website created to help me learn Python and Django. Currently under development.
+A project of a travel agency website created to help me learn Python and Django.
+
+TODO:
+• RWD
 
 Requirements: <br>
 • Trips searching<br>
@@ -8,3 +11,7 @@ Requirements: <br>
 • Handling trips reservations<br>
 • Availability counter<br>
 • Login system<br>
+
+
+## Preview
+http://jplonka.pl:3600
