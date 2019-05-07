@@ -12,6 +12,3 @@ Requirements: <br>
 • Availability counter<br>
 • Login system<br>
 
-
-## Preview
-http://jplonka.pl:3600
